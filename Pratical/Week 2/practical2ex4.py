@@ -106,7 +106,7 @@ print("6)")
 
 square = input("Please enter the square of the height or width")
 
-print(int(square)*2)
+print(int(square)**2)
 
 print("-"*50, "\n")
 
@@ -122,20 +122,42 @@ print("-"*50, "\n")
 
 print("8)")
 
-male = input("number of male")
-female = input("number of female")
+male = int(input("Enter the amount of male "))
+female = int(input("Enter the amount of female "))
 
-maxSum = int(male) + int(female)
+maxSum = male + female
 
-precentMale = male / maxSum
-precentFemale = female / maxSum
+precentMale = male / float(maxSum)
+precentFemale = female / float(maxSum)
 
-print(f"The precentage of male in clss is {precentMale}")
-print(f"The precentage of female in calss is {precentFemale}")
+print(f"The precentage of male in clss is {precentMale * 100}%")
+print(f"The precentage of female in calss is {precentFemale * 100}%")
 
 print("-"*50, "\n")
 
 print("9)")
+
+#varible here
+numShares = 2000
+purchasePrice = 40.00
+purchase_commission_rate = 0.03
+sellingPrice = 42.75
+selling_commission_rate = 0.03
+
+#math here
+paid = numShares * purchasePrice
+paidCommission = paid * purchase_commission_rate
+sellingAmount = numShares * sellingPrice
+sellingCommission = sellingAmount * selling_commission_rate
+pocketLeft = sellingAmount - sellingCommission - paid - paidCommission
+
+print(f"""
+      Joe has pay {paid} for the stock \1n     
+      Joe paid {paidCommission} his broker for her commission when she bought the stock of the commission 
+      Joe sold {sellingAmount} to the stock
+      Joe paid {sellingCommission} her broker for heer commission when he sold the stock
+      Joe had left {pocketLeft} when he sold the stock and paid his broker
+      """)
 
 
     
