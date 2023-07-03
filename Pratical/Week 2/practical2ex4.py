@@ -83,7 +83,7 @@ number3 = input("please enter number 3 \n")
 
 math = int(number1) + int(number2) + int(number3)
 
-print(math)
+print(f"\n{math}")
 
 
 print("-"*50, "\n")
@@ -152,12 +152,12 @@ sellingCommission = sellingAmount * selling_commission_rate
 pocketLeft = sellingAmount - sellingCommission - paid - paidCommission
 
 print(f"""
-      Joe has pay {paid} for the stock \1n     
-      Joe paid {paidCommission} his broker for her commission when she bought the stock of the commission 
-      Joe sold {sellingAmount} to the stock
-      Joe paid {sellingCommission} her broker for heer commission when he sold the stock
-      Joe had left {pocketLeft} when he sold the stock and paid his broker
-      """)
+Joe has pay {paid} for the stock \1n     
+Joe paid {paidCommission} his broker for her commission when she bought the stock of the commission 
+Joe sold {sellingAmount} to the stock
+Joe paid {sellingCommission} her broker for heer commission when he sold the stock
+Joe had left {pocketLeft} when he sold the stock and paid his broker
+""")
 
 
     
