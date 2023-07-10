@@ -4,18 +4,17 @@ import random
 print("--- Rock-paper-scissors ---")
 
 #empty input for the game start or not
-game = ""
-
+startGame = ""
 
 #play game or not
 
-while game not in ['y', 'n']:
-    game = input("Do you want to play Rock-paper-scissors? (y/n): ")
+while startGame not in ['y', 'n']:
+    startGame = input("Do you want to play Rock-paper-scissors? (y/n): ")
     
-    if game == 'y':
+    if startGame == 'y':
         print("Let's have a match with the computer here!")
-    elif game == 'n':
-        break
+    elif startGame == 'n':
+        quit()
     else:
         print("Invalid input. Please enter 'y' or 'n'")
         
@@ -26,39 +25,37 @@ while game not in ['y', 'n']:
     
 
 
-    pc = random.randint(0,2)
+    computer = random.randint(0,2)
 
     print(f"you chose {playStyle[player]}")
 
-    print(f"computer chose {playStyle[pc]}")
+    print(f"computer chose {playStyle[computer ]}")
     
         
     #math here
 
      # 0 is rock / 1 is paper / 2 is scissors
-    if player == pc:
+    if player == computer:
         print('Draw')
     
-    elif player == 0 and pc != player: # if player is rock and pc is not rock 
-        if pc == 1: # pc is paper 
+    elif player == 0 and computer != player: # if player is rock and computer is not rock 
+        if computer == 1: # computer is paper 
             print('you lose') # paper can defeat rock so I'm lose
         else: 
             print('you win') # if opposite then I will win
     
-    elif player == 1 and pc != player: 
-        if pc == 2: 
+    elif player == 1 and computer != player: 
+        if  computer == 2: 
             print('you lose')
         else: 
             print('you win')
         
-    elif player == 2 and pc != player:
-        if pc == 0: 
+    elif player == 2 and computer != player:
+        if computer == 0: 
             print('you lost')
         else: 
             print('you win')
             
 
             
-    playagain = input("Want to play again (y/n)>>>")
-    if playagain != 'y':
-        break
+ 
