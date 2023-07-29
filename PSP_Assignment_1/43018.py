@@ -30,6 +30,29 @@ while True:
         return print("get losses")
     
     print(input(ttt))
+    def check_win(slots, letter):
+    # Check horizontal rows
+        for i in range(0, 9, 3):
+            if slots[i] == slots[i+1] == slots[i+2] == letter:
+                return True
+
+    # Check vertical rows
+        for i in range(3):
+            if slots[i] == slots[i+3] == slots[i+6] == letter:
+                return True
+
+    # Check diagonals
+            if slots[0] == slots[4] == slots[8] == letter:
+                return True
+            elif slots[2] == slots[4] == slots[6] == letter:
+                return True
+
+            return False
+
+# Test with dummy list
+test_slots = [' ', ' ', 'X', ' ', 'O', 'X', ' ', 'O', 'X']
+print(check_win(test_slots, 'X'))  # Output: True
+
     # Updates the GUI. DO NOT REMOVE OR MODIFY!
     try:
         ttt.main_window.update()
