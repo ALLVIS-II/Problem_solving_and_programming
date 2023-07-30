@@ -2,7 +2,31 @@ import tic_tac_toe_gui
 import tkinter
 
 def move_computer(ttt):
-    pass
+    slots = list(ttt.slots)
+    index = 0
+    while index < len(slots):
+        if slots[index] == '':
+            slots[index] = "O"
+            if check_win(slots,"O"):
+                ttt.move_computer(index)
+                index +=10
+            else:
+                slots[index] = ""
+        index += 1
+        
+    index = 0
+    while index < len(slots):
+        if slots[index] == '':
+            slots[index] = "X"
+            if check_win(slots,"X"):
+                ttt.move_computer(index)
+                index +=10
+            else:
+                slots[index] = ""
+        index += 1
+    if not winning_move_found and not blocking_move_found:
+        if slots[0] == "":
+            ttt.move_computer(0)
 def check_win(slots, letter):
     if slots == letter and slots [1] == letter and slots[2] == letter:
         return True
