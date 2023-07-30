@@ -1,21 +1,54 @@
-## File : tic tac toe.py
-# Author : Andy Jordan
-# Student ID : 123456789
-# Email ID : joraa001
-# This is my own work as defined by the University’s
-## Academic Misconduct Policy
-
 import tic_tac_toe_gui
 import tkinter
 
+def move_computer(ttt):
+    pass
+def check_win(slots, letter):
+    if slots == letter and slots [1] == letter and slots[2] == letter:
+        return True
+    elif slots[3] == letter and slots[4] == letter and slots[5] == letter:
+        return True
+    elif slots[6] == letter and slots[7] == letter and slots[8] == letter:
+        return True
+    
+    elif slots[0] == letter and slots[3] == letter and slots[6] == letter:
+        return True
+    elif slots[1] == letter and slots[4] == letter and slots[7] == letter:
+        return True
+    elif slots[2] == letter and slots[5] == letter and slots[8] == letter:
+        return True
+
+    elif slots[0] == letter and slots[4] == letter and slots[8] == letter:
+        return True
+    elif slots[2] == letter and slots[4] == letter and slots[6] == letter:
+        return True
+    
+    return False
+
+test_slots = [' ', ' ', 'X', ' ', 'O', 'X', ' ', 'O', 'X']
+print(check_win(test_slots, 'X'))
+
+def display_details():
+    print("""
+File : 43018.py
+Author : Lua Jin Yuan Alvis
+Student ID : 43018
+Email ID : Luajy004
+This is my own work as defined by the University's
+Academic Misconduct Policy
+""")
+
+display_details()
 play = input("Whould you like to play Tic Tac Toe? [y/n] ---> ")
 while play != 'y' and play != 'n':
     play = input("Whould you like to play Tic Tac Toe? [y/n] ---> ")
 
-# The object of the TicTacToeGUI class that renders the GUI.
-# You can use this object to access the methods listed in the specification.
+if play =='y':
+    name = input("please input your name ---> ")
+    # The object of the TicTacToeGUI class that renders the GUI.
+    # You can use this object to access the methods listed in the specification.
+    ttt = tic_tac_toe_gui.TicTacToeGUI(name)
 
-ttt = tic_tac_toe_gui.TicTacToeGUI("<name as input>")
 
         
 # Main game loop.
@@ -23,7 +56,8 @@ while play == 'y':
     
     while True:
         # Add your game loop code here.
-        print(ttt.player_turn)
+        if not ttt.player_turn:
+            print("It's the computer's turn ---> ")
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         try:
             ttt.main_window.update()
