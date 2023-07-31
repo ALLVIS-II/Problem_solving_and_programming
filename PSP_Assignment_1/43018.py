@@ -24,9 +24,11 @@ def move_computer(ttt):
             else:
                 slots[index] = ""
         index += 1
+        """
     if not winning_move_found and not blocking_move_found:
         if slots[0] == "":
             ttt.move_computer(0)
+            """
 def check_win(slots, letter):
     if slots == letter and slots [1] == letter and slots[2] == letter:
         return True
@@ -87,6 +89,6 @@ while play == 'y':
             ttt.main_window.update()
         except (tkinter.TclError, KeyboardInterrupt):
             quit(0)
-    play = input("Play again? [y/n]")
-    while play != 'y' and play != 'n':
-        play = input("Play again? [y/n] ---> ")
+        play = input("Play again? [y/n]")
+        while play != 'y' and play != 'n':
+            play = input("Play again? [y/n] ---> ")
