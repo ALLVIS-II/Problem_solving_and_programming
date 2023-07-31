@@ -1,8 +1,21 @@
 import tic_tac_toe_gui
 import tkinter
 
-def display_game():
-    pass
+def display_game(slots):
+        for x in range(3):
+            for y in range(3):
+                print(slots[x*3 + y], end=' ')
+                if y < 2:
+                    print('|', end=' ')
+            print()
+            if x < 2:
+                print('-' * 9)
+
+
+ttt_slots = ['O', 'O', 'O', 
+             ' ', 'X', 'X', 
+             ' ', ' ', 'X']
+            
 def end_game():
     play = input("Play again? [y/n]")
     while play != 'y' and play != 'n':
@@ -63,7 +76,7 @@ print(check_win(test_slots, 'X'))
 
 def display_details():
     print("""
-File : 43018.py
+File : 43018.pys
 Author : Lua Jin Yuan Alvis
 Student ID : 43018
 Email ID : Luajy004
@@ -94,10 +107,14 @@ while play == 'y':
             print("It's the computer's turn ---> ")
         while not ttt.check_win and not ttt.blocking_move_found:
             ttt.display_game(ttt.slots)
-        if not ttt.player_turn:
-            ttt.move_computer(0)
-        else:
-            ttt.player_turn()
+            if not ttt.player_turn:
+                ttt.move_computer()# computer move 
+            else:
+                ttt.player_turn() # if computer finsh playing then player move
+        
+        ttt.display_game(ttt.slots) # display the game state
+    
+        
             
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         try:
