@@ -144,11 +144,10 @@ while play == 'y':
             print("---- Computer wins! ----")
             ttt.increment_losses()
             
-        if draw():
+        elif draw(ttt.slots):
             print("---- Draw! ----")
             ttt.draw()
             break
-            
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         try:
             ttt.main_window.update()
