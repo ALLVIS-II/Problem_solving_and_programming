@@ -1,6 +1,12 @@
 import tic_tac_toe_gui
 import tkinter
 
+def draw(slots):
+    for i in slots:
+        if i not in "X" and i not in "O":
+            return False
+        return True
+
 def display_game(slots):
         for x in range(3):
             for y in range(3):
@@ -27,12 +33,15 @@ def end_game():
         play = input("Play again? [y/n]")
 
 def move_computer(ttt):
+    winning_move_found = False
+    block_move_found = False
     slots = list(ttt.slots)
     index = 0
     while index < len(slots):
         if slots[index] == '':
             slots[index] = "O"
             if check_win(slots,"O"):
+                winning_move_found = True
                 ttt.move_computer(index)
                 index +=10
             else:
@@ -44,11 +53,36 @@ def move_computer(ttt):
         if slots[index] == '':
             slots[index] = "X"
             if check_win(slots,"X"):
+                block_move_found = True
                 ttt.move_computer(index)
                 index +=10
             else:
                 slots[index] = ""
         index += 1
+        
+        if not winning_move_found and not block_move_found:
+            if slots[0] == "":
+                ttt.move_computer(0)
+            if slots[2] == "":
+                ttt.move_computer(2)
+            if slots[6] == "":
+                ttt.move_computer(6)
+            if slots[8] == "":
+                ttt.move_computer(8)
+                
+            if slots[4] == "":
+                ttt.move_computer(4)
+                
+            if slots[1] == "":
+                ttt.move_computer(1)
+            if slots[3] == "":
+                ttt.move_computer(3)
+            if slots[5] == "":
+                ttt.move_computer(5)
+            if slots[7] == "":
+                ttt.move_computer(7)
+            
+                
 def check_win(slots, letter):
     if slots == letter and slots [1] == letter and slots[2] == letter:
         return True
@@ -71,8 +105,6 @@ def check_win(slots, letter):
     
     return False
 
-test_slots = [' ', ' ', 'X', ' ', 'O', 'X', ' ', 'O', 'X']
-print(check_win(test_slots, 'X'))
 
 def display_details():
     print("""
@@ -104,17 +136,18 @@ while play == 'y':
     while True:
         # Add your game loop code here.
         if not ttt.player_turn:
-            print("It's the computer's turn ---> ")
-        while not ttt.check_win and not ttt.blocking_move_found:
-            ttt.display_game(ttt.slots)
-            if not ttt.player_turn:
-                ttt.move_computer()# computer move 
-            else:
-                ttt.player_turn() # if computer finsh playing then player move
-        
-        ttt.display_game(ttt.slots) # display the game state
-    
-        
+            move_computer(ttt)
+        if check_win(ttt.slots, "X"):
+            print("---- Player wins! ----")
+            ttt.increment_wins()
+        elif check_win(ttt.slots,"O"):
+            print("---- Computer wins! ----")
+            ttt.increment_losses()
+            
+        if draw():
+            print("---- Draw! ----")
+            ttt.draw()
+            break
             
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         try:
