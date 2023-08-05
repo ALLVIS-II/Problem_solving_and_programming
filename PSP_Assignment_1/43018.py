@@ -1,9 +1,6 @@
 import tic_tac_toe_gui
 import tkinter
-
-        
-        
-        
+    
 def draw(slots):
     for i in slots:
         if i not in "X" and i not in "O":
@@ -132,7 +129,12 @@ if play =='y':
     ttt = tic_tac_toe_gui.TicTacToeGUI(name)
 
 
-        
+ttt = tic_tac_toe_gui.TicTacToeGUI(name)
+wins = 0
+losses = 0
+draws = 0
+# set game_over to False first otherwise loop will be fail
+game_over = False
 # Main game loop.
 while play == 'y':
     
@@ -148,16 +150,25 @@ while play == 'y':
         elif check_win(ttt.slots,"O"):
             print("---- Computer wins! ----")
             ttt.increment_losses()
-        
-        #elif draw(ttt.slots):
-            #print("---- Draw! ----")
-            #ttt.draw()
-        
-        while not end_game:
-            pass
+            losses += 1 
+            game_over = True
+            
+        elif draw(ttt.slots):
+            print("---- Draw! ----")
+            draws += 1
+            break
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         try:
             ttt.main_window.update()
         except (tkinter.TclError, KeyboardInterrupt):
             quit(0)
         end_game()
+        
+    play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
+    while play != 'y' and play != 'n':
+        play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
+
+print("\nFinal Results:")
+print(f"Wins: {ttt.get_wins()}")
+print(f"Losses: {ttt.get_losses()}")
+print(f"Draws: {ttt.get_draws()}")
