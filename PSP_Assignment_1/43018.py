@@ -1,6 +1,9 @@
 import tic_tac_toe_gui
 import tkinter
 
+        
+        
+        
 def draw(slots):
     for i in slots:
         if i not in "X" and i not in "O":
@@ -140,14 +143,18 @@ while play == 'y':
         if check_win(ttt.slots, "X"):
             print("---- Player wins! ----")
             ttt.increment_wins()
+            wins += 1
+            game_over = True
         elif check_win(ttt.slots,"O"):
             print("---- Computer wins! ----")
             ttt.increment_losses()
-            
-        elif draw(ttt.slots):
-            print("---- Draw! ----")
-            ttt.draw()
-            break
+        
+        #elif draw(ttt.slots):
+            #print("---- Draw! ----")
+            #ttt.draw()
+        
+        while not end_game:
+            pass
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         try:
             ttt.main_window.update()
