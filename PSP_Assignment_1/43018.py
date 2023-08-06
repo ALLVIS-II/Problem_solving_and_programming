@@ -84,7 +84,7 @@ def move_computer(ttt):
             
                 
 def check_win(slots, letter):
-    if slots == letter and slots [1] == letter and slots[2] == letter:
+    if slots == letter and slots[1] == letter and slots[2] == letter:
         return True
     elif slots[3] == letter and slots[4] == letter and slots[5] == letter:
         return True
@@ -128,8 +128,6 @@ if play =='y':
     # You can use this object to access the methods listed in the specification.
     ttt = tic_tac_toe_gui.TicTacToeGUI(name)
 
-
-ttt = tic_tac_toe_gui.TicTacToeGUI(name)
 wins = 0
 losses = 0
 draws = 0
@@ -140,7 +138,7 @@ while play == 'y':
     
     while True:
         # Add your game loop code here.
-        if not ttt.player_turn:
+        if ttt.player_turn:
             move_computer(ttt)
         if check_win(ttt.slots, "X"):
             print("---- Player wins! ----")
@@ -167,8 +165,8 @@ while play == 'y':
     play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
     while play != 'y' and play != 'n':
         play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
-
-print("\nFinal Results:")
-print(f"Wins: {ttt.get_wins()}")
-print(f"Losses: {ttt.get_losses()}")
-print(f"Draws: {ttt.get_draws()}")
+if play == 'y':
+    print("\nFinal Results:")
+    print(f"Wins: {ttt.get_wins()}")
+    print(f"Losses: {ttt.get_losses()}")
+    print(f"Drawns: {draws}")
