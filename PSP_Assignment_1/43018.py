@@ -149,7 +149,7 @@ while play == 'y':
     
     while True and game_over == False:
         
-
+        # Add your game loop code here.
         if check_win(ttt.slots, "X"):
             print("---- Player wins! ----")
             result = list(ttt.slots)
@@ -180,20 +180,8 @@ while play == 'y':
             draws += 1
             game_over = True
 
-        # # Add your game loop code here.
-        # if not ttt.player_turn:
-        #     move_computer(ttt)
-        # if check_win(ttt.slots, "X"):
-        #     print("---- Player wins! ----")
-        #     ttt.increment_wins()
-        #     wins += 1
-        #     game_over = True
-            
-        # elif check_win(ttt.slots,"O"):
-        #     print("---- Computer wins! ----")
-        #     ttt.increment_losses()
-        #     losses += 1 
-        #     game_over = True
+        
+        
             
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
         
