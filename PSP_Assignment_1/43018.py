@@ -23,14 +23,15 @@ ttt_slots = ['O', 'O', 'O',
              ' ', ' ', 'X']
             
 def end_game():
-    play = input("Play again? [y/n]")
+    play = input("Play again? [y/n] ---> ")
     while play != 'y' and play != 'n':
         play = input("Play again? [y/n] ---> ")
     if play != 'y':
         print(f" ----------------------- END GAME -----------------------")
         feedback = input(f"any feedback? ---> ")
         print(f"Here is your feedback: {feedback}")
-        play = input("Play again? [y/n]")
+    elif play == 'y':
+        return True
 
 def move_computer(ttt):
     winning_move_found = False
@@ -104,8 +105,14 @@ def check_win(slots, letter):
         return True
     
     return False
+#check if the game is draw
+def check_draw(slots):
+    if "" not in slots:
+        return True
+    else:
+        return False
 
-
+check_play = False
 def display_details():
     print("""
 File : 43018.pys
@@ -119,9 +126,11 @@ Academic Misconduct Policy
 display_details()
 play = input("Whould you like to play Tic Tac Toe? [y/n] ---> ")
 while play != 'y' and play != 'n':
+    
     play = input("Whould you like to play Tic Tac Toe? [y/n] ---> ")
 
 if play =='y':
+    check_play = True
     name = input("please input your name ---> ")
     print("--------------- Start Game ---------------")
     # The object of the TicTacToeGUI class that renders the GUI.
@@ -136,36 +145,77 @@ game_over = False
 # Main game loop.
 while play == 'y':
     
-    while True:
-        # Add your game loop code here.
-        if ttt.player_turn:
-            move_computer(ttt)
+    
+    
+    while True and game_over == False:
+        
+
         if check_win(ttt.slots, "X"):
             print("---- Player wins! ----")
+            result = list(ttt.slots)
             ttt.increment_wins()
+            
+            
+            
+            display_game(result)
             wins += 1
             game_over = True
-        elif check_win(ttt.slots,"O"):
+            
+        if check_win(ttt.slots, "O"):
             print("---- Computer wins! ----")
+            result = list(ttt.slots)
             ttt.increment_losses()
+            
+            
+            display_game(result)
             losses += 1 
             game_over = True
-            
-        elif draw(ttt.slots):
+        if check_draw(ttt.slots):
             print("---- Draw! ----")
+            result = list(ttt.slots)
+            ttt.draw()
+            
+            
+            display_game(result)
             draws += 1
-            break
+            game_over = True
+
+        # # Add your game loop code here.
+        # if not ttt.player_turn:
+        #     move_computer(ttt)
+        # if check_win(ttt.slots, "X"):
+        #     print("---- Player wins! ----")
+        #     ttt.increment_wins()
+        #     wins += 1
+        #     game_over = True
+            
+        # elif check_win(ttt.slots,"O"):
+        #     print("---- Computer wins! ----")
+        #     ttt.increment_losses()
+        #     losses += 1 
+        #     game_over = True
+            
         # Updates the GUI. DO NOT REMOVE OR MODIFY!
+        
         try:
+            
             ttt.main_window.update()
+            if not ttt.player_turn:
+                move_computer(ttt)
         except (tkinter.TclError, KeyboardInterrupt):
             quit(0)
-        end_game()
         
-    play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
-    while play != 'y' and play != 'n':
-        play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
-if play == 'y':
+    again_check = False
+    again_check = end_game()
+        
+    if again_check == True:
+        # play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
+        # while play != 'y' and play != 'n':
+        #     play = input("Would you like to play Tic Tac Toe? [y/n] ---> ")
+        game_over = False
+    else:
+        play = "n"
+if check_play == True:
     print("\nFinal Results:")
     print(f"Wins: {ttt.get_wins()}")
     print(f"Losses: {ttt.get_losses()}")
