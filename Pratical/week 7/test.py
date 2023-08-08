@@ -1,32 +1,21 @@
 import random
 
-index = ['rock', 'paper', 'scissors']
-player = int(input("Would you like to play rock-paper-scissor\n Enter\n '1' = rock \n '2' = paper \n '3' = scissors\n\n")) -1
-
-computer = random.randint(0,2)
-
-print(f"player choose {index[player]}")
-print(f"computer choose {index[player]}")
-
-
-if player == computer:
-    print('Draw')
     
-elif player == 0 and computer != player: # if player is ro
-    if computer == 1: # computer is paper 
-        print('you lose') # paper can defeat rock so I'm l
-    else: 
-        print('you win') # if opposite then I will win
-    
-elif player == 1 and computer != player: 
-    if  computer == 2: 
-        print('you lose')
-    else: 
-        print('you win')
-    
-elif player == 2 and computer != player:
-    if computer == 0: 
-        print('you lost')
-    else: 
-        print('you win')
-        
+user_choice = int(input("Enter your choice (1 for rock, 2 for paper, 3 for scissors): "))
+computer_choice = random.randint(1, 3)
+
+choices = ['rock', 'paper', 'scissors']
+
+print(f"Your choice: {choices[user_choice - 1]}")
+print(f"Computer's choice: {choices[computer_choice - 1]}")
+
+if user_choice == computer_choice:
+    print("It's a tie!")
+elif user_choice == 1 and computer_choice == 3:
+    print("You win!")
+elif user_choice == 2 and computer_choice == 1:
+    print("You win")
+elif user_choice == 3 and computer_choice == 2:
+    print("You win")
+else:
+    print("Computer wins!")
