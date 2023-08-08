@@ -14,7 +14,7 @@ while startGame not in ['y', 'n']:
     if startGame == 'y':
         print("Let's have a match with the computer here!")
     elif startGame == 'n':
-        quit()
+        quit(0)
     else:
         print("Invalid input. Please enter 'y' or 'n'")
         
@@ -29,7 +29,7 @@ while startGame not in ['y', 'n']:
 
     print(f"you chose {playStyle[player]}")
 
-    print(f"computer chose {playStyle[computer ]}")
+    print(f"computer chose {playStyle[computer]}")
     
         
     #math here
