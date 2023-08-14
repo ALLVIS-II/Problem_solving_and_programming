@@ -28,3 +28,50 @@ print(f"THe maxiume number of {num1} and {num2} is {number}")
 
 print("\n----- Question 3 -----")
 
+import random
+def get_random(a):
+    integer = random.randint(1,a)
+    
+    return integer
+num = 10
+
+for _ in range(10):
+    guess = get_random(num)
+
+    print(guess)
+
+print("\n----- Question 4 -----")
+
+def capitalize_words(cap):
+    words = cap.split()
+    cap_words = [word.capitalize() for word in words]
+    return ' '.join(cap_words)
+user_input = input("Whats your name")
+
+fix = capitalize_words(user_input)
+print(f"you name is {fix}")
+
+print("\n----- Question 5 -----")
+
+def sum_list(numbers_list):
+    total = 0
+    for num in numbers_list:
+        total += num
+    return total
+
+numbers = [1, 2, 3, 4, 5]
+result = sum_list(numbers)
+
+print(f"The sum of the numbers in the list is: {result}")
+
+print("\n----- Question 6 -----")
+
+
+def generate_lotto_number():
+    num = []
+    for _ in range(7):
+        random_digit = random.randint(0, 9)
+        num.append(random_digit)
+    return num
+
+print(f"generated lotto number: {generate_lotto_number()}")
