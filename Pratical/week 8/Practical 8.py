@@ -75,3 +75,45 @@ def generate_lotto_number():
     return num
 
 print(f"generated lotto number: {generate_lotto_number()}")
+
+# b)
+def display_lotto_number(numList):
+    numbers = ', '.join(str(num) for num in numList)
+    print(numbers)
+
+display_lotto_number(num)
+
+# c) 
+for i in range(20):
+    num = generate_lotto_number()
+    display_lotto_number(num)
+
+print("\n----- Question 7 -----")
+
+def display_with_dash(word):
+    formatWord = '-'.join(word)
+    return print(formatWord)
+
+words = ['Elvis', 'has', 'left', 'the', 'building!']
+
+for i in words:
+    display_with_dash(i)
+
+print("\n----- Question 8 -----")
+
+def calculate_sum(string):
+    total = 0
+    for n in string:
+        digit = int(n)
+        total += digit
+    return total
+
+math = input("put some number here ")
+
+print(f"the num are {calculate_sum(math)}")
+
+
+
+
+
+        

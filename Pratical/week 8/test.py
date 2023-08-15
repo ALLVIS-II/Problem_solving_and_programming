@@ -1,9 +1,10 @@
-import random 
-def generate_lotto_number():
-    num = []
-    for _ in range(7):
-        random_digit = random.randint(0, 9)
-        num.append(random_digit)
-    return num
+print("\n----- Question 8 -----")
 
-print(f"generated lotto number: {generate_lotto_number()}")
+def display_with_dash(word):
+    formatWord = '-'.join(word)
+    return print(formatWord)
+
+words = ['Elvis', 'has', 'left', 'the', 'building!']
+
+for i in words:
+    display_with_dash(i)
