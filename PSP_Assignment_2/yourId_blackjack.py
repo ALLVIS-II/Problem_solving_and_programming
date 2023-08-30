@@ -95,9 +95,6 @@ def play_blackjack():
         
 
     return total_score
-    
-
-
 
 # # Call function play_blackjack() - plays blackJack against the computer
 # score = play_blackjack()
