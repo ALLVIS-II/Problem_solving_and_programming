@@ -1,6 +1,4 @@
-import yourId_blackjack as bj
-import os
-import sys
+bj = __import__('43018_blackjack')
 # score = bj.play_blackjack()
 player_names = ["","","","",""]
 player_scores = [0,0,0,0,0]
@@ -9,10 +7,15 @@ player_scores = [0,0,0,0,0]
 def read_file(filename, player_names, player_scores):
     open_file = open(filename, 'r')
     open_file = open_file.read().splitlines()
-    for i in range(5):
+    for i in range(len(open_file)):
         open_file[i] = open_file[i].split()
-        player_names[i] = open_file[i][0] + ' ' + open_file[i][1]
-        player_scores[i] = int(open_file[i][2])
+        if open_file[i][1].isdigit() and len(open_file[i]) == 2:
+            player_names[i] = open_file[i][0]
+            player_scores[i] = int(open_file[i][1])
+        else:
+            player_names[i] = open_file[i][0] + ' ' + open_file[i][1]
+            player_scores[i] = int(open_file[i][2])
+    
 
 read_file('high_scores.txt', player_names, player_scores)
 
@@ -21,7 +24,8 @@ def write_to_file(filename, player_names, player_scores):
     
     open_file = open(filename, 'w')
     for i in range(5):
-        open_file.write(player_names[i] + ' ' + str(player_scores[i]) + '\n')
+        if player_names[i] != '' and player_scores[i] != 0:
+            open_file.write(player_names[i] + ' ' + str(player_scores[i]) + '\n')
     open_file.close()
   
 
@@ -37,15 +41,18 @@ def display_high_scores(player_names, player_scores):
             score_formats[player_names.index(names)] = '>' + str(score_format)
             stars[player_names.index(names)] = '>' + str(12 - score_length)
             player_names[player_names.index(names)] = '??????????'
+        elif len(names) < 7:
+            name_length = len(names)
+            score_length = len(str(player_scores[player_names.index(names)]))
+            score_format = 32 - name_length + score_length - 1 - (7 - name_length)
+            score_formats[player_names.index(names)] = '>' + str(score_format)
+            stars[player_names.index(names)] = '>' + str(12 - score_length)
         else:
             name_length = len(names)
             score_length = len(str(player_scores[player_names.index(names)]))
             score_format = 32 - name_length + score_length - 1
             score_formats[player_names.index(names)] = '>' + str(score_format)
             stars[player_names.index(names)] = '>' + str(12 - score_length)
-    print(score_formats)
-    print(stars)
-    print(score_length)
     top1 = player_names[0]
     top2 = player_names[1]
     top3 = player_names[2]
@@ -65,26 +72,29 @@ def display_high_scores(player_names, player_scores):
     print("*       Player Name                     Score       *")
     print("*****************************************************")
     print("*---------------------------------------------------*")
-    print(f"*       {format(top1, '^10')} {format(top1_score, score_formats[0])} {format('*', stars[0])}")
+    print(f"*       {format(top1, '7')} {format(top1_score, score_formats[0])} {format('*', stars[0])}")
     print("*---------------------------------------------------*")
-    print(f"*       {format(top2, '^10')} {format(top2_score, score_formats[1])} {format('*', stars[1])}")
+    print(f"*       {format(top2, '7')} {format(top2_score, score_formats[1])} {format('*', stars[1])}")
     print("*---------------------------------------------------*")
-    print(f"*       {format(top3, '^10')} {format(top3_score, score_formats[2])} {format('*', stars[2])}")
+    print(f"*       {format(top3, '7')} {format(top3_score, score_formats[2])} {format('*', stars[2])}")
     print("*---------------------------------------------------*")
-    print(f"*       {format(top4, '^10')} {format(top4_score, score_formats[3])} {format('*', stars[3])}")
+    print(f"*       {format(top4, '7')} {format(top4_score, score_formats[3])} {format('*', stars[3])}")
     print("*---------------------------------------------------*")
-    print(f"*       {format(top5, '^10')} {format(top5_score, score_formats[4])} {format('*', stars[4])}")
+    print(f"*       {format(top5, '7')} {format(top5_score, score_formats[4])} {format('*', stars[4])}")
     print("*---------------------------------------------------*")
     print("*****************************************************")
+    if '??????????' in player_names:
+        player_names[player_names.index('??????????')] = ''
 
 def find_player(player_names, name):
     
-    for names in player_names:
-        if name == names:
-            print(f'{name} has a high score of {player_scores[player_names.index(names)]}')
-        else:
-            print(f'{name} does not have a high scores entry.')
-            return -1
+    
+    if name in player_names:
+        print(f'{name} has a high score of {player_scores[player_names.index(name)]}')
+        return
+    else:
+        print(f'{name} does not have a high scores entry.')
+        return -1
 
 
 def is_high_score(player_scores, new_score):
@@ -124,9 +134,11 @@ while menu != 'quit':
                 name = input('Please enter your name: ')
                 add_player(player_names, player_scores, name, score, insert_position)
                 write_to_file('high_scores.txt', player_names, player_scores)
+        else:
+            print('Sorry - you did not make it into the BlackJack Hall of Fame!')
     else:
         print('Not a valid command - please try again.')
     menu = input('Please enter command [scores, search, play, quit]: ')
 if menu == 'quit':
-    print('Thank you for playing Blackjack.')
+    print('Goodbye - thanks for playing!')
     write_to_file('high_scores.txt', player_names, player_scores)
