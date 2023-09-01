@@ -1,44 +1,52 @@
 import random
 
 def get_choice():
+    # ask player to enter 'h' or 's' 
     choice = input('| Would you like to hit or stand? [h/s] ---> ')
+    # if none of this character it will ask the player to enter again
     while choice != 'h' and choice != 's':
         choice = input('| Would you like to hit or stand? [h/s] ---> ')
     return choice
 
 def deal_players_hand():
-    player_first_die, player_second_die = random.randint(1, 10), random.randint(1, 10)
+    player_first_die = random.randint(1, 10)
+    player_second_die = random.randint(1, 10)
     player_total_score = player_first_die + player_second_die
     print('| Player hand: {} + {} = {}'.format(player_first_die, player_second_die, player_total_score))
     print('| ')
     choice = get_choice()
+    # if player enter stand and his score is less than 15 
     while choice == 's' and player_total_score < 15:
+        # the score will be error
         print('\n| Cannot stand on value less than 15!\n')
         choice = 'h'
     while choice == 'h':
-        
+        # 1 in dice will be 1 if the amount is bigger than 21 other wise it will be 11
         dice = random.randint(1, 10)
         if dice == 1:
             if player_total_score + dice > 21:
                 dice = 1
             else:
                 dice = 11
-
+        # I am tring to renew the value just easier for me to check my code
         player_old_total_score = player_total_score
         player_total_score += dice
+        # if the player is bigger than 21 player will be bust
         if player_total_score > 21:
             print('| Player hand: {} + {} = {}'.format(player_old_total_score, dice, player_total_score))
             print('| PLAYER BUSTS!')
             choice = 's'
         else:
+            # else the player can keep going with their game 
             print('| Player hand: {} + {} = {}'.format(player_old_total_score, dice, player_total_score))
             print('| ')
             choice = get_choice()
+            # if the choice is still less than 15 it will continue to be 'h'
             if choice == 's' and player_total_score < 15:
                 print('| Cannot stand on value less than 15!\n')
                 choice = 'h'
         
-            
+    # to return back the player number 
     return player_total_score
     
 def deal_dealers_hand(dealer_hand):
