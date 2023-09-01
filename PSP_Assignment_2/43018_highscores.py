@@ -1,9 +1,20 @@
+#
+#  PSP Assignment 2 - Provided file (highscores.py).
+#  Remove this and place appropriate file comments here.
+#
+#  Modify this file to include your code solution.
+#
 bj = __import__('43018_blackjack')
 # score = bj.play_blackjack()
 player_names = ["","","","",""]
 player_scores = [0,0,0,0,0]
-
-
+# This function takes a file name and reads the contents of that file into
+# the player_name and player_scores lists passed as a parameter into the
+# function.
+#
+# The function returns the number of players read in from the file.
+# You should make sure that you do not exceed the size of the lists (i.e. size
+# of 5).  The player_names and player_scores lists should not exceed 5 elements.
 def read_file(filename, player_names, player_scores):
     open_file = open(filename, 'r')
     open_file = open_file.read().splitlines()
@@ -40,7 +51,7 @@ def display_high_scores(player_names, player_scores):
             score_format = 32 - 10
             score_formats[player_names.index(names)] = '>' + str(score_format)
             stars[player_names.index(names)] = '>' + str(12 - score_length)
-            player_names[player_names.index(names)] = '??????????'
+            player_names[player_names.index(names)] = 'not an value name'
         elif len(names) < 7:
             name_length = len(names)
             score_length = len(str(player_scores[player_names.index(names)]))
