@@ -72,15 +72,15 @@ def deal_dealers_hand(dealer_hand):
 
 def determine_winner(player_total_score, dealer_total_score):
     if player_total_score > 21:
-        return 0
+        return 0 # 0 meaning player lose 
     elif dealer_total_score > 21:
-        return 1
+        return 1 # 1 meaning player win
     elif player_total_score > dealer_total_score:
         return 1
     elif dealer_total_score > player_total_score:
         return 0
     else:
-        return 3
+        return 3 # 3 mean this game is tie
 
 
 def play_blackjack():
